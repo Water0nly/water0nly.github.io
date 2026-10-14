@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alan Roy | Engineering Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #eef1f4;
+      --surface: #ffffff;
+      --ink: #14202b;
+      --muted: #5b6b79;
+      --line: #cfd7de;
+      --header: #425B9A;
+      --accent: #FF95A5;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      background: var(--header);
+      color: #fff;
+      padding: 2.5rem 1.5rem 2rem;
+    }
+    .wrap { max-width: 1000px; margin: 0 auto; }
+    header h1 { margin: 0; font-size: 2rem; font-weight: 600; letter-spacing: -0.01em; }
+    header p  { margin: 0.25rem 0 0; color: #e1e8f7; }
+
+    /* ---------- Tabs ---------- */
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav .wrap { display: flex; gap: 0.5rem; padding: 0 1.5rem; }
+    nav a {
+      padding: 0.9rem 1rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 3px solid transparent;
+    }
+    nav a:hover { color: var(--ink); }
+    nav a.active { color: var(--ink); border-bottom-color: var(--accent); }
+    nav a:focus-visible { outline: 2px solid var(--header); outline-offset: -2px; }
+
+    /* ---------- Pages ---------- */
+    main { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .page { display: none; }
+    .page.active { display: block; }
+    h2 { margin: 0 0 1.25rem; font-size: 1.5rem; }
+
+    /* ---------- Home intro ---------- */
+    .intro { max-width: 70ch; margin-bottom: 3rem; }
+    .intro p { margin: 0 0 1rem; font-size: 1.1rem; }
+    .intro p:last-child { margin-bottom: 0; }
+
+    /* ---------- Projects ---------- */
+    .section { margin-bottom: 3rem; }
+    .section h2 { margin-bottom: 1rem; }
+    .gallery { display: grid; gap: 1.5rem; }
+    .gallery.one  { grid-template-columns: 1fr; }
+    .gallery.two,
+    .gallery.four { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 640px) {
+      .gallery.two,
+      .gallery.four { grid-template-columns: 1fr; }
+    }
+    .photo {
+      margin: 0;
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+    .photo img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: var(--line);
+    }
+	.photo img.fit {
+      object-fit: contain;
+      background: #fff;
+      padding: 0 rem;
+    }
+    .photo .note {
+      margin: 0;
+      padding: 0.6rem 0.75rem;
+      color: #000;
+      font-size: 0.9rem;
+    }
+    .section .videos { margin-top: 1.5rem; }
+
+    /* ---------- Videos ---------- */
+    .videos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .video {
+      aspect-ratio: 16 / 9;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: #000;
+    }
+    .video iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+    /* ---------- Resume ---------- */
+    .resume-frame {
+      width: 100%;
+      height: 80vh;
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .button {
+      display: inline-block;
+      margin-bottom: 1rem;
+      padding: 0.5rem 1rem;
+      background: var(--accent);
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* ---------- About ---------- */
+    .about {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .about img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      background: var(--line);
+    }
+    .about p { margin-top: 0; max-width: 62ch; }
+    @media (max-width: 640px) {
+      .about { grid-template-columns: 1fr; }
+      .about img { max-width: 220px; }
+    }
+
+    footer { text-align: center; color: var(--muted); font-size: 0.9rem; padding-bottom: 2rem; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <h1>Alan Roy</h1>
+      <p>Mechanical Engineering Portfolio</p>
+    </div>
+  </header>
+
+  <nav aria-label="Main">
+    <div class="wrap">
+      <a href="#home" data-tab="home">Home</a>
+      <a href="#resume" data-tab="resume">Resume</a>
+      <a href="#about" data-tab="about">About me</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HOME: intro text, then three sections. Change the header text, image file names, and descriptions. -->
+    <section id="home" class="page">
+
+      <!-- Intro text: edit or add paragraphs -->
+      <div class="intro">
+        <p>Hello! This site largly serves as a supplement to my resume, as I wanted to show off some of the stuff that I have created. I hope you enjoy!</p>
+      </div>
+
+      <!-- Header 1: 1 image, then both videos -->
+      <div class="section">
+        <h2>FSH - 30lb Vertical Spinner</h2>
+      <div class="gallery one">
+        <figure class="photo">
+          <img src="images/FSH_CAD.png" alt="FSH CAD">
+          <p class="note">Current CAD interation of FSH in Fusion 360</p>
+        </figure>
+      </div>
+
+        <!-- Replace VIDEO_ID_1 and VIDEO_ID_2 with the part after "v=" in each YouTube link (keep both spots in each line the same) -->
+        <div class="videos">
+          <div class="video">
+            <iframe
+              src="https://www.youtube.com/embed/8JNDSWuwONs?autoplay=1&mute=1&loop=1&playlist=8JNDSWuwONs&playsinline=1"
+              title="FSH Showcase"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowfullscreen></iframe>
+          </div>
+          <div class="video">
+            <iframe
+              src="https://www.youtube.com/embed/FpoG9UZ0C6E?autoplay=1&mute=1&loop=1&playlist=FpoG9UZ0C6E&playsinline=1"
+              title="FSH Fight"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header 2: 2 images -->
+      <div class="section">
+        <h2>ANGLRFSH - Upcoming 30lb Hammersaw</h2>
+      <div class="gallery two">
+        <figure class="photo">
+          <img src="images/ANGLRFSH_CAD.png" alt="ANGLRFSH CAD">
+          <p class="note">Current design for ANGLRFSH, our team's new 30lb robot</p>
+        </figure>
+        <figure class="photo">
+          <img class="fit" src="images/ANGLRFSH_arm.png" alt="ANGLRFSH Arm">
+          <p class="note">Arm and weapon design iteration for ANGLRFSH</p>
+        </figure>
+      </div>
+      </div>
+
+      <!-- Header 3: 4 images -->
+      <div class="section">
+        <h2>Projects</h2>
+      <div class="gallery four">
+        <figure class="photo">
+          <img class="fit" src="images/walker_top.png" alt="Walker Top">
+          <p class="note">Top view of drive train and chasis for 4 leg walker</p>
+        </figure>
+        <figure class="photo">
+          <img src="images/walker_bottom.png" alt="Describe this image">
+          <p class="note">Bottom view of drive train and chasis for 4 leg walker (Legs Removed)</p>
+        </figure>
+        <figure class="photo">
+          <img class="fit" src="images/whirlpool_full.png" alt="Whirlpool Full">
+          <p class="note">Outer view of Whirlpool, my one pound combat robot</p>
+        </figure>
+        <figure class="photo">
+          <img class="fit" src="images/whirlpool_cross.png" alt="Whirlpool Cross Section">
+          <p class="note">Cross Section of Whirlpool, my one pound combat robot</p>
+        </figure>
+      </div>
+      </div>
+
+    </section>
+
+    <!-- RESUME: put your file at resume.pdf in the same folder as this page -->
+    <section id="resume" class="page">
+      <h2>Resume</h2>
+      <a class="button" href="resume.pdf" download>Download PDF</a>
+      <iframe class="resume-frame" src="resume.pdf" title="Resume PDF">
+        <p>Your browser can't display PDFs. <a href="resume.pdf">Open the resume</a> instead.</p>
+      </iframe>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="page">
+      <h2>About me</h2>
+      <div class="about">
+        <img src="images/me.jpg" alt="Portrait of Alan Roy">
+        <div>
+          <p>My name is Alan Roy, and I am currently a junior attending the University of Illinois Urbana-Champaign studing. I am studying mechanical engineering with a minor in electrical engineering. Ever since I was a child, I have been enamored with robotics. It began when I went to my hometown’s fair, Salmon Days, and saw the high school robotics team’s demonstration.</p> 
+		  <p>I carried that passion through high school and college, where I kept exploring the field and creating amazing things. I have fallen in love with all things design and control theory. Which together satisfy my desire to create and to investigate complex math.</p>
+		  <p>Contact: <a href="mailto:alanyenroy@gmail.com">alanyenroy@gmail.com</a> &middot; <a href="https://www.linkedin.com/in/alanyenroy">LinkedIn</a></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>&copy; 2026 Alan Roy</footer>
+
+  <script>
+    // Shows the tab named in the URL hash (#home, #resume, #about).
+    const tabs = document.querySelectorAll("nav a");
+    const pages = document.querySelectorAll(".page");
+
+    function showTab() {
+      const name = location.hash.slice(1) || "home";
+      const valid = [...pages].some(p => p.id === name);
+      const current = valid ? name : "home";
+      pages.forEach(p => p.classList.toggle("active", p.id === current));
+      tabs.forEach(t => t.classList.toggle("active", t.dataset.tab === current));
+    }
+
+    window.addEventListener("hashchange", showTab);
+    showTab();
+  </script>
+</body>
+</html>
