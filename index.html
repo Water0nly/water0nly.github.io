@@ -104,6 +104,20 @@
       font-size: 0.9rem;
     }
     .section .videos { margin-top: 1.5rem; }
+	
+	.feature {
+	  display: grid;
+	  grid-template-columns: minmax(0, 1fr) 260px;
+	  gap: 1.5rem;
+	  align-items: start;
+	}
+	.video.vertical { aspect-ratio: 9 / 16; }
+	  @media (max-width: 640px) {
+	  .feature { grid-template-columns: 1fr; }
+	  .photo.vertical-clip { max-width: 260px; }
+	}
+	
+	.photo .video { border: 0; }
 
     /* ---------- Videos ---------- */
     .videos {
@@ -117,7 +131,7 @@
       overflow: hidden;
       background: #000;
     }
-    .video iframe { width: 100%; height: 100%; border: 0; display: block; pointer-events: none;}
+    .video video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* ---------- Resume ---------- */
     .resume-frame {
@@ -188,29 +202,35 @@
       <!-- Header 1: 1 image, then both videos -->
       <div class="section">
         <h2>FSH - 30lb Vertical Spinner</h2>
-      <div class="gallery one">
-        <figure class="photo">
-          <img src="images/FSH_CAD.png" alt="FSH CAD">
-          <p class="note">Current CAD interation of FSH in Fusion 360</p>
-        </figure>
-      </div>
+		<div class="feature">
+		  <figure class="photo">
+			<img src="images/FSH_CAD.png" alt="FSH CAD">
+			<p class="note">Current CAD of FSH, my team's 30lb vertical spinner robot</p>
+		  </figure>
+		  
+		  <figure class="photo vertical-clip">
+		    <div class="video vertical">
+			  <video src="FSH_cooked.mp4" autoplay muted loop playsinline></video>
+		    </div>
+			<p class="note">Sometimes things don't go as planned...</p>
+		  </figure>
+		</div>
 
         <!-- Replace VIDEO_ID_1 and VIDEO_ID_2 with the part after "v=" in each YouTube link (keep both spots in each line the same) -->
+		
         <div class="videos">
-          <div class="video">
-            <iframe
-              src="https://www.youtube.com/embed/8JNDSWuwONs?autoplay=1&mute=1&loop=1&playlist=8JNDSWuwONs&playsinline=1&controls=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0"
-              title="FSH Showcase"
-              allow="autoplay; encrypted-media; picture-in-picture"
-              allowfullscreen></iframe>
-          </div>
-          <div class="video">
-            <iframe
-              src="https://www.youtube.com/embed/FpoG9UZ0C6E?autoplay=1&mute=1&loop=1&playlist=FpoG9UZ0C6E&playsinline=1&controls=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0"
-              title="FSH Fight"
-              allow="autoplay; encrypted-media; picture-in-picture"
-              allowfullscreen></iframe>
-          </div>
+		  <figure class="photo">
+            <div class="video">
+              <video src="FSH_hype.mp4" autoplay muted loop playsinline></video>
+            </div>
+			<p class="note">Production shot of FSH</p>
+		  </figure>
+		  <figure class="photo">
+            <div class="video">
+              <video src="FSH_launch.mp4" autoplay muted loop playsinline></video>
+            </div>
+			<p class="note">A nice hit that we got on our opponent</p>
+		  </figure>
         </div>
       </div>
 
